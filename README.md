@@ -22,7 +22,7 @@ pub fn main() {
   1
   |> glemo.memo("my_cache", fn(x) { x + 1 }) // 2
 
-  // now value returned from cache, fallback funciton ignored
+  // now value returned from cache, fallback function ignored
   1
   |> glemo.memo("my_cache", fn(x) { x + 1 }) // 2
 
