@@ -60,3 +60,20 @@ pub fn glemo_invalidation_test() {
 
   cleanup()
 }
+
+pub fn glemo_falsy_cached_test() {
+  glemo.init(["test"])
+
+  False
+  |> glemo.memo("test", fn(x) { x })
+  |> should.equal(False)
+
+  False
+  |> glemo.memo("test", fn(x) {
+    panic as "memoization not working"
+    x
+  })
+  |> should.equal(False)
+
+  cleanup()
+}

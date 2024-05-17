@@ -11,7 +11,7 @@ export const init = (cacheNames) => {
 export const memo = (arg, cacheName, fun) => {
   const cache = getCache(cacheName);
   const resp = cache.get(arg);
-  if (resp) {
+  if (resp != null) {
     return resp;
   } else {
     const resp = fun(arg);
