@@ -1,6 +1,6 @@
 name = "glemo"
 version = "1.0.0"
-description = "Simple function memoization over Erlang ETS/JavaScript Map for Gleam"
+description = "Simple function memoization over Erlang ETS / JavaScript Map for Gleam"
 licences = ["MIT"]
 repository = { type = "github", user = "darky", repo = "glemo" }
 
