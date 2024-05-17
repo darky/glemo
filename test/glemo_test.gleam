@@ -7,7 +7,8 @@ pub fn main() {
   gleeunit.main()
 }
 
-fn cleanup() {
+@external(javascript, "./glemo_ffi.mjs", "cleanUp")
+fn cleanup() -> Nil {
   let assert Ok(cache) = table.ref("test")
   table.drop(cache)
 }
