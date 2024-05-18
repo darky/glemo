@@ -1,5 +1,5 @@
 name = "glemo"
-version = "1.0.0"
+version = "1.0.1"
 description = "Simple function memoization over Erlang ETS / JavaScript Map for Gleam"
 licences = ["MIT"]
 repository = { type = "github", user = "darky", repo = "glemo" }
