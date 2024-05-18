@@ -1,4 +1,6 @@
 import carpenter/table
+import gleam/dict
+import gleam/list
 import gleeunit
 import gleeunit/should
 import glemo
@@ -95,6 +97,57 @@ pub fn record_test() {
     x.name
   })
   |> should.equal("test")
+
+  cleanup()
+}
+
+pub fn list_test() {
+  glemo.init(["test"])
+
+  [1, 2, 3]
+  |> glemo.memo("test", fn(x) { list.length(x) })
+  |> should.equal(3)
+
+  [1, 2, 3]
+  |> glemo.memo("test", fn(x) {
+    panic as "memoization not working"
+    list.length(x)
+  })
+  |> should.equal(3)
+
+  cleanup()
+}
+
+pub fn dict_test() {
+  glemo.init(["test"])
+
+  dict.from_list([#("test", 1)])
+  |> glemo.memo("test", fn(x) { dict.size(x) })
+  |> should.equal(1)
+
+  dict.from_list([#("test", 1)])
+  |> glemo.memo("test", fn(x) {
+    panic as "memoization not working"
+    dict.size(x)
+  })
+  |> should.equal(1)
+
+  cleanup()
+}
+
+pub fn tuple_test() {
+  glemo.init(["test"])
+
+  #(1, 2, 3)
+  |> glemo.memo("test", fn(x) { x.2 })
+  |> should.equal(3)
+
+  #(1, 2, 3)
+  |> glemo.memo("test", fn(x) {
+    panic as "memoization not working"
+    x.2
+  })
+  |> should.equal(3)
 
   cleanup()
 }
