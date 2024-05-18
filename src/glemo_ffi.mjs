@@ -1,3 +1,5 @@
+import { hash } from "./hash.mjs";
+
 const caches = new Map();
 
 export const init = (cacheNames) => {
@@ -10,12 +12,13 @@ export const init = (cacheNames) => {
 
 export const memo = (arg, cacheName, fun) => {
   const cache = getCache(cacheName);
-  const resp = cache.get(arg);
+  const key = hash(arg);
+  const resp = cache.get(key);
   if (resp != null) {
     return resp;
   } else {
     const resp = fun(arg);
-    cache.set(arg, resp);
+    cache.set(key, resp);
     return resp;
   }
 };
@@ -27,7 +30,7 @@ export const invalidateAll = (cacheName) => {
 
 export const invalidateSpecific = (arg, cacheName) => {
   const cache = getCache(cacheName);
-  cache.delete(arg);
+  cache.delete(hash(arg));
 };
 
 const getCache = (cacheName) => {

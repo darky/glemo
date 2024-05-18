@@ -3,6 +3,10 @@ import gleeunit
 import gleeunit/should
 import glemo
 
+type Test {
+  Test(name: String)
+}
+
 pub fn main() {
   gleeunit.main()
 }
@@ -13,7 +17,7 @@ fn cleanup() -> Nil {
   table.drop(cache)
 }
 
-pub fn glemo_memoize_test() {
+pub fn memoize_test() {
   glemo.init(["test"])
 
   1
@@ -31,7 +35,7 @@ pub fn glemo_memoize_test() {
   cleanup()
 }
 
-pub fn glemo_invalidation_test() {
+pub fn invalidation_test() {
   glemo.init(["test"])
 
   1
@@ -61,7 +65,7 @@ pub fn glemo_invalidation_test() {
   cleanup()
 }
 
-pub fn glemo_falsy_cached_test() {
+pub fn falsy_cached_test() {
   glemo.init(["test"])
 
   False
@@ -74,6 +78,23 @@ pub fn glemo_falsy_cached_test() {
     x
   })
   |> should.equal(False)
+
+  cleanup()
+}
+
+pub fn record_test() {
+  glemo.init(["test"])
+
+  Test("test")
+  |> glemo.memo("test", fn(x) { x.name })
+  |> should.equal("test")
+
+  Test("test")
+  |> glemo.memo("test", fn(x) {
+    panic as "memoization not working"
+    x.name
+  })
+  |> should.equal("test")
 
   cleanup()
 }
