@@ -75,10 +75,7 @@ pub fn falsy_cached_test() {
   |> should.equal(False)
 
   False
-  |> glemo.memo("test", fn(x) {
-    panic as "memoization not working"
-    x
-  })
+  |> glemo.memo("test", fn(_) { panic as "memoization not working" })
   |> should.equal(False)
 
   cleanup()
@@ -92,10 +89,7 @@ pub fn record_test() {
   |> should.equal("test")
 
   Test("test")
-  |> glemo.memo("test", fn(x) {
-    panic as "memoization not working"
-    x.name
-  })
+  |> glemo.memo("test", fn(_) { panic as "memoization not working" })
   |> should.equal("test")
 
   cleanup()
@@ -109,10 +103,7 @@ pub fn list_test() {
   |> should.equal(3)
 
   [1, 2, 3]
-  |> glemo.memo("test", fn(x) {
-    panic as "memoization not working"
-    list.length(x)
-  })
+  |> glemo.memo("test", fn(_) { panic as "memoization not working" })
   |> should.equal(3)
 
   cleanup()
@@ -126,10 +117,7 @@ pub fn dict_test() {
   |> should.equal(1)
 
   dict.from_list([#("test", 1)])
-  |> glemo.memo("test", fn(x) {
-    panic as "memoization not working"
-    dict.size(x)
-  })
+  |> glemo.memo("test", fn(_) { panic as "memoization not working" })
   |> should.equal(1)
 
   cleanup()
@@ -143,10 +131,7 @@ pub fn tuple_test() {
   |> should.equal(3)
 
   #(1, 2, 3)
-  |> glemo.memo("test", fn(x) {
-    panic as "memoization not working"
-    x.2
-  })
+  |> glemo.memo("test", fn(_) { panic as "memoization not working" })
   |> should.equal(3)
 
   cleanup()
