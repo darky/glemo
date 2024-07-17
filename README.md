@@ -2,6 +2,8 @@
 
 [![Package Version](https://img.shields.io/hexpm/v/glemo)](https://hex.pm/packages/glemo)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glemo/)
+![Erlang-compatible](https://img.shields.io/badge/target-erlang-a2003e)
+![JavaScript-compatible](https://img.shields.io/badge/target-javascript-f1e05a)
 
 Simple function memoization over Erlang ETS / JavaScript Map for Gleam
 
